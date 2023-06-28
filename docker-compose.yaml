@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  node0:
+    image: "ethereum/client-go:alltools-v1.10.25"
+    container_name: node0
+    hostname: node0
+    user: "root:root"
+    restart: always
+    volumes:
+      - ./data/node0:/root/data
+      - ./conf:/root/conf
+    ports:
+      - 8081:8081
+      # HTTP server / GraphQL API
+      - 8545:8545
+      # WebSocket
+      - 8546:8546
+      # Network listening port (P2P networking)
+      - 30001:30001
+    command: geth
+    # extra_hosts:
+    #   - "node0:${node0_addr}"
+    #   - "node1:${node1_addr}"
+
+  node1:
+    image: "ethereum/client-go:alltools-v1.10.25"
+    container_name: node1
+    hostname: node1
+    user: "root:root"
+    restart: always
+    volumes:
+      - ./data/node1:/root/data
+      - ./conf:/root/conf
+    ports:
+      - 8082:8081
+      # HTTP server / GraphQL API
+      - 8547:8545
+      # WebSocket
+      - 8548:8546
+      # Network listening port (P2P networking)
+      - 30002:30001
+    command: geth
+    # extra_hosts:
+    #   - "node0:${node0_addr}"
+    #   - "node1:${node1_addr}"
+

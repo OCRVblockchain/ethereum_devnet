@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  remix-ide:
+    image: "remixproject/remix-ide:yann300-patch-36"
+    container_name: remix-ide
+    restart: always
+    volumes:
+      - $HOME/dmv:/root
+    # init: true
+    ports:
+      - 8090:80
+    # extra_hosts:
+    #   - "bank:${node0_addr}"
+    #   - "buyer:${node1_addr}"
